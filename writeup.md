@@ -59,14 +59,9 @@ If enable, also the border of the used viewport and the "raw" detected lines can
 
 ###2. Identify potential shortcomings with your current pipeline
 
-
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
-
+The pipeline relies on a static viewport, it will not work when the lane-markings are out of this field, e.g. when taking turns or when switching lanes.
+Another problem is that the approximated line is actually a straight line while in reality roads have curves. If the curves get to narrow (extra challenge is on the border of being to curvy), approximating a line is not correct but a curve, e.g. a clothoid, should be approximated.
 
 ###3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+A possible improvement would be to strain the image of the camera so that the lane has the same width throughout the whole image. This would allow to improve the line-matcher in a case that it could increase a probability for line element to be part of the marking if they are parrallel to other element in the same distance from the camera.
