@@ -24,7 +24,7 @@ Afterwards lines
 ##### 1. Color filter
 Using just a canny edge detection fails on frames with low contrast around the lane markings, especially in the extra challenge. To overcome this, I implemented a pre-filtering that uses color-matching to mask important parts of the image. White and light gray can easily be detected in RGB-color-space, but for yellow this is not possible, as it is a mixture. However, matching any color is simple in HSV color space. Color-masking is done as the initial step and produces output like this:
 
-TODO: add image  ![alt text][image1]
+![Filtered for white and yellow](res/white_yellow.png)
 
 ##### 2. Gaussian blur
 The color-filtered image is blurred to reduce the contrast on the edges of the color-filter. Without blurring the edge-detection would recognize edges in every place where the masked modified pixels.
@@ -35,7 +35,7 @@ Canny edge-detection works independent of any color, so convert to gray-scale.
 ##### 4. Run canny
 Use opencv's Canny Edge Detection to highlight edges in the image. The output looks like this:
 
-TODO: add image  ![alt text][image1]
+![After edge detection](res/edges.png)
 
 #### Line extraction
 
@@ -55,8 +55,7 @@ To improve the result all segments that do not "point away" from the camera are 
 The final step is to render the two lines approximated by approximate_line into the original frame. As the lines are just polynomial curves they need to be "cut" so that they are not drawn above the horizon. The viewport is reused for this.
 If enable, also the border of the used viewport and the "raw" detected lines can be embedded into the image, which then looks like this:
 
-TODO: add image  ![alt text][image1]
-
+![Output with debug info](res/debug.png)
 
 ###2. Identify potential shortcomings with your current pipeline
 
